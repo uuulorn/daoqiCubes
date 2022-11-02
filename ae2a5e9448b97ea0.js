@@ -119,6 +119,7 @@ class Puzzle {
         return null;
     }
 }
+document.title = '稻妻方块解谜';
 const h = ubf.f();
 new ubf.Watcher({
     root(data) {
@@ -131,6 +132,7 @@ var uiCps;
 (function (uiCps) {
     function app(data) {
         return h('div').addChildren([
+            h('h3').addText('适用于多数稻妻方块谜题'),
             uiCps.puzMeta(data),
             uiCps.puzDetail(data),
             uiCps.puzResult(data)
@@ -250,8 +252,12 @@ var uiCps;
     }
     uiCps.puzCube = puzCube;
     function puzResult(data) {
-        if (data.answer) {
+        if (data.puzzle && data.answer) {
             return h('div').addChildren([
+                h('div').addText('初始状态:').addChildren(data.puzzle.content.map(x => {
+                    const s = x + '';
+                    return h('button').addText(s);
+                })),
                 h('div').addText('最终结果:').addChildren(data.answer.content.map(x => {
                     const s = x + '';
                     return h('button').addText(s);
