@@ -4,6 +4,7 @@ class Data {
         this.faces = 3;
         this.puzzle = null;
         this.cubesAmount = 4;
+        this.question = null;
         this.answer = null;
         this.linkSelectTmp = [];
     }
@@ -174,6 +175,7 @@ var uiCps;
                 }),
                 h('button').addText('寻找答案').on('click', ({ model }) => {
                     if (model.puzzle) {
+                        model.question = model.puzzle.clone();
                         model.answer = model.puzzle.findAnswer();
                     }
                 }).setAttributes({
@@ -253,9 +255,9 @@ var uiCps;
     }
     uiCps.puzCube = puzCube;
     function puzResult(data) {
-        if (data.puzzle && data.answer) {
+        if (data.question && data.answer) {
             return h('div').addChildren([
-                h('div').addText('初始状态:').addChildren(data.puzzle.content.map(x => {
+                h('div').addText('初始状态:').addChildren(data.question.content.map(x => {
                     const s = x + '';
                     return h('button').addText(s);
                 })),
