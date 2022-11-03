@@ -212,8 +212,9 @@ var uiCps;
             h('div').addChildren([
                 h('span').addChildren([
                     h('select').addChildren((function () {
+                        const ii = i;
                         const r = [];
-                        for (let i = 0, l = data.puzzle.depth; i < l; i++) {
+                        for (let i = 0, l = data.puzzle.content.length; i < l; i++) {
                             r.push(h('option').addText(i + ''));
                         }
                         return r;
